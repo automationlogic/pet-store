@@ -7,7 +7,6 @@ then
     exit 1
 fi
 
-cd /root/repos/pet-store
 mvn clean package
 docker build -t lwilts/cicd_demo:$1 .
 docker login -u lwilts
