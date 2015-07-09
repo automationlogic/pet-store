@@ -1,0 +1,4 @@
+*
+!dockerfile
+!target/jpetstore.war
+!tomcat-users.xml
