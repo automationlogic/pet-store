@@ -17,6 +17,7 @@ if [ $2 -eq "origin/dev" ]
 then
     TARGET_IP=$DEV_IP
 elif [ $2 -eq "origin/deploy" ]
+then
     TARGET_IP=$DEPLOY_IP
 else
     echo "Target IP unknown for git branch $2."
