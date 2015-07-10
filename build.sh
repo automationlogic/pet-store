@@ -11,7 +11,7 @@ mvn clean package
 #docker build -t lwilts/pet_store_demo:$1 .
 echo "*** Building dockerfile ***"
 tar zcf dockerfile.tar.gz dockerfile
-curl --verbose --request POST -H "Content-Type:application/tar" --data-binary '@dockerfile.tar.gz' http://172.17.42.1:2375/build?t=lwilts/pet_store_demo:$1
+curl --verbose --request POST -H "Content-Type:application/tar" --data-binary '@dockerfile.tar.gz' http://172.17.42.1:2375/build?t=lwilts/pet_store_demo:$1&nocache=true
 #docker login -u lwilts
 #docker push lwilts/pet_store_demo
 
