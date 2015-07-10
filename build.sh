@@ -13,10 +13,10 @@ then
     exit 1
 fi
 
-if [ $2 -eq "origin/dev" ]
+if [ $2 = "origin/dev" ]
 then
     TARGET_IP=$DEV_IP
-elif [ $2 -eq "origin/deploy" ]
+elif [ $2 = "origin/deploy" ]
 then
     TARGET_IP=$DEPLOY_IP
 else
