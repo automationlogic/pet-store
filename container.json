@@ -1,0 +1,12 @@
+{
+    "Hostname": "",
+    "Domainname": "",
+    "User": "",
+    "Image": "lwilts/cicd_demo:BUILD_NUMBER",
+    "ExposedPorts": {
+        "8080/tcp": {}
+    },
+    "HostConfig": {
+        "PortBindings": { "8080/tcp": [{ "HostPort": "8888" }] }
+    }
+}

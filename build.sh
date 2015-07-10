@@ -10,16 +10,18 @@ fi
 mvn clean package
 #docker build -t lwilts/cicd_demo:$1 .
 echo "*** Building dockerfile ***"
-curl --request POST -H "Content-Type:application/tar" --data-binary @dockerfile http://172.17.42.1:2375/build
+tar zcf dockerfile.tar.gz dockerfile
+curl --verbose --request POST -H "Content-Type:application/tar" --data-binary '@dockerfile.tar.gz' http://172.17.42.1:2375/build?t=lwilts/cicd_demo:$1
 #docker login -u lwilts
 #docker push lwilts/cicd_demo
 
-# LOCAL DEPLOY
+# REMOTE DEPLOY
 #docker kill pet-store && docker rm pet-store
 echo "*** Removing old pet-store ***"
-curl --request DELETE http://172.17.42.1:2375/containers/pet-store?force=true
+curl --verbose --request DELETE http://172.17.42.1:2375/containers/pet-store?force=true
 #docker run --name pet-store -p 80:8080 -d lwilts/cicd_demo:$1
 echo "*** Creating new pet-store ***"
-curl --request POST -H "Content-Type:application/json" --data-binary @container.json http://172.17.42.1:2375/containers
-
+sed -i "s/BUILD_NUMBER/$1/g" container.json
+curl --verbose --request POST -H "Content-Type:application/json" --data-binary '@container.json' http://172.17.42.1:2375/containers/create?name=pet-store
+curl --verbose --request POST http://172.17.42.1:2375/containers/pet-store/start
 exit 0
