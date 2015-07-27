@@ -2,7 +2,7 @@
     "Hostname": "",
     "Domainname": "",
     "User": "",
-    "Image": "lwilts/pet_store_demo:BUILD_NUMBER",
+    "Image": "lwilts/pet_store_TARGET:BUILD_NUMBER",
     "ExposedPorts": {
         "8080/tcp": {}
     },
